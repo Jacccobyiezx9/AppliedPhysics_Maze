@@ -8,16 +8,12 @@ public class MazeGenerator : MonoBehaviour
     public GameObject largeWall;
 
     [Header("Ground Size")]
-    public Vector3 ground = new Vector3(7, 1, 7);
+    public Vector3 ground = new Vector3(10, 1, 10);
 
     [Header("Max Walls")]
     public int smallWallMax = 10;
     public int mediumWallMax = 6;
     public int largeWallMax = 3;
-
-    [Header("Endpoints")]
-    public Transform start;
-    public Transform finish;
 
     [Header("LayerMask")]
     public LayerMask endpoint;
@@ -36,8 +32,8 @@ public class MazeGenerator : MonoBehaviour
         for (int i = 0; i < max; i++) 
         {
             Vector3 randomWallPos = new Vector3
-                (Random.Range(-ground.x * 3f, ground.x * 3f), 1.5f, 
-                    Random.Range(-ground.z * 3f, ground.z * 3f));
+                (Random.Range(-ground.x * 5f, ground.x * 5f), 1.5f, 
+                    Random.Range(-ground.z * 5f, ground.z * 5f));
 
             Quaternion randomWallRot = Quaternion.Euler(0, Random.Range(0, 360), 0);
 
@@ -61,4 +57,11 @@ public class MazeGenerator : MonoBehaviour
         }
 
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(Vector3.zero, ground * 10f);
+    }
 }
+
